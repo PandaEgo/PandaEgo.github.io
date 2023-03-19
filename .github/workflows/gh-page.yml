@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     concurrency:
@@ -20,6 +20,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Cache dependencies
         uses: actions/cache@v2
